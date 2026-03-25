@@ -15,7 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-/* === Fondo con Movimiento Dinámico === */
+/* === Fondo con Movimiento Dinï¿½mico === */
 .background-animation {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -85,7 +85,7 @@ body {
     box-shadow: 0 0 50px var(--neon-magenta), 0 0 100px var(--neon-cyan);
 }
 
-/* === Títulos llamativos === */
+/* === Tï¿½tulos llamativos === */
 .glitch {
     font-size: 6rem;
     font-weight: 900;
@@ -167,6 +167,89 @@ h2 {
     font-weight: bold;
     border-radius: 0;
     transform: skew(-10deg);
+}
+
+/* CRUD SYSTEM STYLES */
+#crud-system {
+    grid-column: 1 / -1;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 3rem;
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    margin-top: 2rem;
+}
+
+.crud-controls {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-neon {
+    background: transparent;
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.btn-neon:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 30px var(--neon-cyan);
+    transform: translateY(-3px);
+}
+
+.btn-neon.secondary {
+    border-color: var(--neon-magenta);
+    color: var(--neon-magenta);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.btn-neon.secondary:hover {
+    background: var(--neon-magenta);
+    color: #000;
+    box-shadow: 0 0 30px var(--neon-magenta);
+}
+
+.table-container {
+    overflow-x: auto;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.cyber-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(10, 10, 10, 0.8);
+    color: #fff;
+}
+
+.cyber-table th {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--neon-cyan);
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cyber-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.cyber-table tr:hover {
+    background: rgba(0, 255, 255, 0.05);
 }
 
 @media (max-width: 1100px) {
