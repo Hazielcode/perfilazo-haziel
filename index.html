@@ -60,39 +60,37 @@
                         <li class="pill-sec"><i class="fas fa-shield-alt"></i> DevSecOps</li>
                     </ul>
                 </section>
+
+                <!-- CRUD INSERTADO AQUÍ -->
+                <section id="crud-system" class="glass-card" style="margin-top: 2rem; padding: 1.5rem;">
+                    <h2><i class="fas fa-database"></i> User Management (CRUD)</h2>
+                    <div class="crud-controls" style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <button class="btn-neon" onclick="listarUsuarios()" style="width: 100%;">Listar Usuarios</button>
+                        <input type="text" id="input-nombre" placeholder="Nombre" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
+                        <input type="email" id="input-email" placeholder="Email" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
+                        <button class="btn-neon secondary" onclick="crearUsuario()" style="width: 100%;">Registrar</button>
+                    </div>
+                </section>
             </div>
         </div>
     </header>
 
-    <section id="crud-system" class="glass-card" style="grid-column: 1 / -1; margin-top: 2rem; padding: 2rem;">
-        <h2><i class="fas fa-database"></i> User Management System (CRUD)</h2>
-        <div class="crud-controls" style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-            <button class="btn-neon" onclick="listarUsuarios()">Listar Usuarios</button>
-            <div id="new-user-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <input type="text" id="input-nombre" placeholder="Nombre" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
-                <input type="email" id="input-email" placeholder="Email" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
-                <button class="btn-neon secondary" onclick="crearUsuario()">Registrar</button>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <table class="cyber-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Rol</th>
-                    </tr>
-                </thead>
-                <tbody id="user-table-body">
-                    <tr>
-                        <td colspan="4" style="text-align: center; color: rgba(255,255,255,0.5);">Haz clic en "Listar Usuarios" para cargar datos...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <div class="table-container-fixed" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <table class="cyber-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body">
+                <tr>
+                    <td colspan="3" style="text-align: center; color: rgba(255,255,255,0.5);">Haz clic en "Listar Usuarios" arriba.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <footer>
         <p>Built with <i class="fas fa-heart" style="color: #ff4d4d;"></i> by Haziel | 2026 | <a href="https://render.com" target="_blank">Deployed on Render</a></p>
