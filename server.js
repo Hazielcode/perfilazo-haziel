@@ -22,6 +22,7 @@ const pool = new Pool({
 // Función para inicializar la base de datos (CREATE TABLE si no existe)
 const initDB = async () => {
     try {
+        // Crear tabla
         await pool.query(`
             CREATE TABLE IF NOT EXISTS usuarios (
                 id SERIAL PRIMARY KEY,
@@ -31,6 +32,18 @@ const initDB = async () => {
                 fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         `);
+
+        // Insertar datos iniciales si no hay ninguno
+        const countRes = await pool.query('SELECT COUNT(*) FROM usuarios');
+        if (parseInt(countRes.rows[0].count) === 0) {
+            await pool.query(`
+                INSERT INTO usuarios (nombre, email, rol) VALUES 
+                ('Haziel Admin', 'haziel@tecsup.edu.pe', 'Admin'),
+                ('Cloud Test', 'cloud@render.com', 'DevOps');
+            `);
+            console.log('✨ Datos iniciales insertados');
+        }
+
         console.log('✅ Base de datos verificada/creada');
     } catch (err) {
         console.error('❌ Error inicializando DB:', err);
