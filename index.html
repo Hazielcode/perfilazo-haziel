@@ -33,9 +33,32 @@
                 <section id="crud-system" class="glass-card">
                     <h2><i class="fas fa-database"></i> User Management System</h2>
                     <p>Módulo CRUD integrado para gestión de usuarios sobre PostgreSQL.</p>
-                    <div class="crud-controls">
-                        <button class="btn-neon" onclick="alert('Funcionalidad de listar vinculada al Backend en Render')"><i class="fas fa-users"></i> Listar Usuarios</button>
-                        <button class="btn-neon btn-secondary" onclick="alert('Formulario de registro en desarrollo')"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
+                    <div class="crud-controls" style="margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                        <button class="btn-neon" onclick="listarUsuarios()"><i class="fas fa-users"></i> Listar Usuarios</button>
+                        
+                        <div id="new-user-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <input type="text" id="input-nombre" placeholder="Nombre" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem; flex: 1; min-width: 150px;">
+                            <input type="email" id="input-email" placeholder="Email" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem; flex: 1; min-width: 150px;">
+                            <button class="btn-neon secondary" onclick="crearUsuario()"><i class="fas fa-user-plus"></i> Registrar</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container" style="margin-top: 2rem; overflow-x: auto;">
+                        <table class="cyber-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-table-body">
+                                <tr>
+                                    <td colspan="4" style="text-align: center; color: rgba(255,255,255,0.5); padding: 2rem;">Haz clic en "Listar Usuarios" para cargar datos...</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
