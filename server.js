@@ -11,12 +11,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.')); // Para servir el index.html
 
-// Configuración de PostgreSQL (Usa la URL de Render)
+// Configuración de PostgreSQL (Detecta automático local o Render)
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    ssl: process.env.DATABASE_URL.includes('render.com') || process.env.DATABASE_URL.includes('onrender.com') 
+        ? { rejectUnauthorized: false } 
+        : false
 });
 
 // Función para inicializar la base de datos (CREATE TABLE si no existe)
