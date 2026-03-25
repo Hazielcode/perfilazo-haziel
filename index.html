@@ -64,9 +64,102 @@
         </div>
     </header>
 
+    <section id="crud-system" class="glass-card" style="grid-column: 1 / -1; margin-top: 2rem; padding: 2rem;">
+        <h2><i class="fas fa-database"></i> User Management System (CRUD)</h2>
+        <div class="crud-controls" style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="btn-neon" onclick="listarUsuarios()">Listar Usuarios</button>
+            <div id="new-user-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <input type="text" id="input-nombre" placeholder="Nombre" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
+                <input type="email" id="input-email" placeholder="Email" style="background: rgba(0,0,0,0.5); border: 1px solid var(--neon-cyan); color: white; padding: 0.5rem;">
+                <button class="btn-neon secondary" onclick="crearUsuario()">Registrar</button>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table class="cyber-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody id="user-table-body">
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: rgba(255,255,255,0.5);">Haz clic en "Listar Usuarios" para cargar datos...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <footer>
         <p>Built with <i class="fas fa-heart" style="color: #ff4d4d;"></i> by Haziel | 2026 | <a href="https://render.com" target="_blank">Deployed on Render</a></p>
     </footer>
+
+    <script>
+        async function listarUsuarios() {
+            const tableBody = document.getElementById('user-table-body');
+            tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--neon-cyan);">Conectando con la base de datos...</td></tr>';
+            
+            try {
+                const response = await fetch('/usuarios');
+                if (!response.ok) throw new Error('Error en el servidor');
+                const usuarios = await response.json();
+                
+                tableBody.innerHTML = '';
+                if (usuarios.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No hay usuarios registrados.</td></tr>';
+                } else {
+                    usuarios.forEach(user => {
+                        const row = `
+                            <tr>
+                                <td>${user.id}</td>
+                                <td>${user.nombre}</td>
+                                <td>${user.email}</td>
+                                <td><span style="color: var(--neon-cyan)">${user.rol}</span></td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--neon-magenta)">Error al conectar con la base de datos.</td></tr>';
+            }
+        }
+
+        async function crearUsuario() {
+            const nombre = document.getElementById('input-nombre').value;
+            const email = document.getElementById('input-email').value;
+
+            if (!nombre || !email) {
+                alert('Por favor, completa nombre y email');
+                return;
+            }
+
+            try {
+                const response = await fetch('/usuarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nombre, email, rol: 'Developer' })
+                });
+
+                if (response.ok) {
+                    alert('¡Usuario registrado con éxito!');
+                    document.getElementById('input-nombre').value = '';
+                    document.getElementById('input-email').value = '';
+                    listarUsuarios();
+                } else {
+                    alert('Error al registrar usuario');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error de conexión con el servidor');
+            }
+        }
+    </script>
 
 </body>
 </html>
